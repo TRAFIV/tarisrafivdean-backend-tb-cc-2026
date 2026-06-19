@@ -1,6 +1,7 @@
 runtime: nodejs20
 env: standard
 instance_class: F1
+service: be-2411523013
 
 env_variables:
   # Ganti dengan IP Address VM MariaDB Anda jika sudah mendapatkannya
