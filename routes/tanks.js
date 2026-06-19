@@ -5,7 +5,7 @@ const pool = require('../db');
 // GET /tanks - Menampilkan seluruh data
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM tanks');
+        const [rows] = await pool.query('SELECT id_tank AS id, nama_tank, jenis_tank, tahun_produksi, berat_ton, kecepatan_kmh, panjang, lebar, tinggi, jumlah_kru, kaliber_meriam_mm, deskripsi, negara_asal FROM tanks');
         res.json({
             status: 'success',
             message: 'Data retrieved successfully',
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // GET /tanks/:id - Menampilkan detail data
 router.get('/:id', async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM tanks WHERE id_tank = ?', [req.params.id]);
+        const [rows] = await pool.query('SELECT id_tank AS id, nama_tank, jenis_tank, tahun_produksi, berat_ton, kecepatan_kmh, panjang, lebar, tinggi, jumlah_kru, kaliber_meriam_mm, deskripsi, negara_asal FROM tanks WHERE id_tank = ?', [req.params.id]);
         if (rows.length === 0) {
             return res.status(404).json({ status: 'error', message: 'Data not found' });
         }
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
         );
 
         const newId = result.insertId;
-        const [newRow] = await pool.query('SELECT * FROM tanks WHERE id_tank = ?', [newId]);
+        const [newRow] = await pool.query('SELECT id_tank AS id, nama_tank, jenis_tank, tahun_produksi, berat_ton, kecepatan_kmh, panjang, lebar, tinggi, jumlah_kru, kaliber_meriam_mm, deskripsi, negara_asal FROM tanks WHERE id_tank = ?', [newId]);
 
         res.status(201).json({
             status: 'success',
@@ -80,7 +80,7 @@ router.put('/:id', async (req, res) => {
             return res.status(404).json({ status: 'error', message: 'Data not found' });
         }
 
-        const [updatedRow] = await pool.query('SELECT * FROM tanks WHERE id_tank = ?', [req.params.id]);
+        const [updatedRow] = await pool.query('SELECT id_tank AS id, nama_tank, jenis_tank, tahun_produksi, berat_ton, kecepatan_kmh, panjang, lebar, tinggi, jumlah_kru, kaliber_meriam_mm, deskripsi, negara_asal FROM tanks WHERE id_tank = ?', [req.params.id]);
 
         res.json({
             status: 'success',
