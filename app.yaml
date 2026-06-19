@@ -4,7 +4,6 @@ instance_class: F1
 service: be-2411523013
 
 env_variables:
-  # Ganti dengan IP Address VM MariaDB Anda jika sudah mendapatkannya
   DB_HOST: "34.101.102.84"
   DB_USER: "user_2411523013"
   DB_PASSWORD: "KomputasiAwan2026!"
